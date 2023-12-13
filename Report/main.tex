@@ -1,0 +1,102 @@
+\documentclass[3p, twocolumn, number, sort&compress, times]{elsarticle}
+
+\usepackage{amsmath}                            % (1)
+\usepackage{amssymb}                            % (1)
+\usepackage{amsthm}                             % (2)
+\usepackage{graphicx}                           % (3)
+\usepackage[pdfborder={0 0 0}]{hyperref}        % (4)
+% \usepackage{pdfpages}                         % (5)
+
+% ... add your own packages here!
+%\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{enumitem}
+\usepackage[Export]{adjustbox}
+\usepackage{tikz}
+\usepackage{physics}
+
+\usepackage{mathdots}
+\usepackage{yhmath}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{siunitx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{tabularx}
+\usepackage{extarrows}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{shapes}
+
+%\captionsetup[subfigure]{font={bf,small}, skip=1pt, margin=0pt, singlelinecheck=false}
+\captionsetup[subfigure]{font={bf,small}}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand\note[1]{\textcolor{red}{$<$#1$>$}}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	FRONTMATTER																																																												   													     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frontmatter}
+
+	\title{Low Rank Matrix Completion}
+	\author[1]{Tina Torabi}
+	\ead{ttorabi@math.ubc.ca}
+	\author[2]{Alireza Yazdani}
+	\ead{ayazdani@math.ubc.ca}
+%	\affiliation[1]{organization={Mathematics Department, University of British Columbia},
+%		addressline={1984 Mathematics Road},
+%		postcode={V6T 1Z2},
+%		city={Vancouver},
+%		country={Canada}}
+%	\affiliation[2]{organization={Chemical and Biological Engineering Department, University of British Columbia},
+%		addressline={2360 E Mall},
+%		postcode={V6T 1Z3},
+%		city={Vancouver},
+%		country={Canada}}
+
+	\begin{abstract}
+		Abstract
+	\end{abstract}
+
+	\begin{keyword}
+		Matrix completion \sep Low rank matrix completion \sep Nuclear norm \sep Netflix problem
+	\end{keyword}
+
+\end{frontmatter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Introduction    																																																													   													 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction} \label{sec:intro}
+
+Introduction
+
+\section{Conclusion} \label{ sec:conclusion }
+
+Conclusion
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	References																																																																												 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{abbrvnat}
+\bibliography{references.bib}
+
+\end{document}

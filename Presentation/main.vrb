@@ -1,0 +1,6 @@
+\frametitle{Superquadrics}
+\justifying
+	Superquadrics are a family of geometric shapes defined by:
+	\begin{equation}\label{eq:SQ}
+		\left[\left\vert\frac{x}{a}\right\vert^{n_2} + \left\vert\frac{y}{b}\right\vert^{n_2}\right]^{n_1/n_2} + \left\vert\frac{z}{c}\right\vert^{n_1} = 1.
+	\end{equation}
