@@ -1,0 +1,51 @@
+function [ U, S, V ] = completeMatrix( observationData, maxNumSVs )
+    [ rowN, colN ] = size( observationData );
+    mask = sparse( observationData ~= 0 );
+    R = observationData;
+    Q = sparse( rowN, colN );
+    for k = 1:100
+        Z = mask .* R;
+        [ u, tau, v ] = svds( Z, 1 );
+        delR = mask .* ( tau * u * v' ) - Q;
+        rho = sum( dot( delR, R ) );
+        if rho < eps
+            break;
+        end
+        theta = min( 1, rho / norm( delR, 'fro' ) ^ 2 );
+        R = R - theta * delR;
+        Q = Q + theta * delR;
+    end
+    [ U, Sigma, V ] = svds( Z, maxNumSVs );
+    multiplictyLargestSV = find( abs( diag( Sigma ) - Sigma( 1 ) ) < 0.5 );
+    multiplictyLargestSV = find( abs( diag( Sigma ) - Sigma( 1 ) ) < 0.5 );
+    U = U( :, multiplictyLargestSV );
+    V = V( :, multiplictyLargestSV );
+
+    % Solving SDP
+    options = optimoptions( 'fmincon', ...
+                            'Display', ...
+                            'iter-detailed', ...
+                            'Algorithm', ...
+                            'sqp' );
+    fun = @(S) ( 0.5 * ...
+                 norm( full ( mask .* ( U * diag( S ) * V' - observationData ) ) ) ...
+                 ^ 2 );
+    % Linear constraint trace(S) < tau
+    A = ones( multiplictyLargestSV, 1 );
+    b = tau;
+    % No equality constraints
+    Aeq = [];
+    beq = [];
+    % Lower and upper bounds of the variables
+    lb = zeros( multiplictyLargestSV, 1 );
+    ub = tau * ones( multiplictyLargestSV, 1 );
+    % Nonlinear constraint
+    nonlcon = [];
+    % Initial guess
+    S0 = zeros( multiplictyLargestSV, 1 );
+    % Solve
+    S = fmincon( fun, S0, A, b, Aeq, beq, lb, ub, nonlcon, options );
+
+    % Reshaping for the output
+    S = diag( S );
+end

@@ -1,0 +1,9 @@
+function [ trainData, testData ] = readMovieLensData( pathToData, num )
+    trainData = tdfread( pathToData + "/u" + int2str(num) + ".base", '\t' );
+    trainData = struct2cell( trainData );
+    trainData = sparse( trainData{2}, trainData{1}, trainData{3} );
+    testData = tdfread( pathToData + "/u" + int2str(num) + ".test", '\t' );
+    testData = struct2cell( testData );
+    temp = sparse( size())
+    testData = sparse( testData{2}, testData{1}, testData{3} );
+end
