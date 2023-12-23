@@ -5,6 +5,8 @@ function observedData = readImage( pathToImage, desiredRank, sparsity )
     image = rgb2gray( image );
     % Making an array of doubles
     image = im2double( image );
+    % Resizing
+    image = imresize( image, 0.5 );
 
     % Changing the rank
     [ U, S, V ] = svd( image );

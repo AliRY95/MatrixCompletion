@@ -1,4 +1,17 @@
-function [ U, S, V, rho ] = completeMatrix( observedData, tau, maxNumSVs )
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Matrix Completion Function Using DualGC.
+%
+% Inputs:
+% 1. observedData: Known data. Binary mask is created based on 0 elements
+% of observedData.
+% 2. tau: Nuclear norm constraint.
+% 3. maxNumSVs: Maximum No. of singular values to retrieve.
+%
+% Outputs:
+% [U, S, V]: SVD decomposition of the completed matrix.
+% rho: Optimality gap at each iteration.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [ U, S, V, rho ] = completeMatrix( observedData, tau, maxNumSVs, tauStar )
     maxIter = 10000;
     epsilon = 1.e-7;
 
@@ -52,7 +65,7 @@ function [ U, S, V, rho ] = completeMatrix( observedData, tau, maxNumSVs )
         diag( -1 * ones( 1, multiplictyLargestSV - 1 ), -1 );
     A( 1, : ) = 1;
     b = zeros( multiplictyLargestSV, 1 );
-    b( 1 ) = tau;
+    b( 1 ) = tauStar;
     % No equality constraints
     Aeq = [];
     beq = [];

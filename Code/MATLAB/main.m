@@ -3,16 +3,17 @@ clc;
 clf;
 
 %% Choose one for the observed data
-rowN = 100;
-colN = 100;
-% observedData = createRandomMatrix( rowN, colN, 0.5 );
-% [ observedData, testData ] = readMovieLensData( "ml-100k", 1 );
-% observedData = readTorabData( "TorabData" );
-observedData = readImage( "Images/torab.jpg", 5, 0.8 );
-
-testAvailable = 0;
+% rowN = 100;
+% colN = 100;
+% observedData = createRandomMatrix( rowN, colN, 0.1 );
+[ observedData, testData ] = readMovieLensData( "ml-100k", 1 );
+% observedData = readImage( "Images/MPF.jpg", 20, 0.5 );
+% 
+testAvailable = 1;
 %% Dual conditional gradient for matrix completion
-[ U, S, V, rho ] = completeMatrix( observedData, 4000, 5 );
+tic;
+[ U, S, V, rho ] = completeMatrix( observedData, 2000, 50, 10000 );
+toc;
 
 %% Rank estimation as proposed by MPF
 estimatedRank = estimateRank( U, S, V );
@@ -40,26 +41,16 @@ end
 
 %% Plots
 figure( 1 );
-subplot( 1, 3, 1 );
-spy( observedData );
-subplot( 1, 3, 2 );
-spy( predictedData );
-% subplot( 1, 3, 3 );
-% spy( testData );
+semilogy( abs( rho ) );
 
 figure( 2 );
-subplot( 1, 3, 1 );
-plot( observedData );
-subplot( 1, 3, 2 );
-plot( predictedData );
+subplot( 1, 2, 1 );
+spy( observedData );
+subplot( 1, 2, 2 );
+spy( predictedData );
 
 figure( 3 );
-semilogy( abs( rho ) )
-
-figure( 4 );
 subplot( 1, 2, 1 );
 imshow( full( observedData ) );
 subplot( 1, 2, 2 );
 imshow( full( predictedData ) );
-% subplot( 1, 3, 3 );
-
