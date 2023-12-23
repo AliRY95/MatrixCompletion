@@ -13,7 +13,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [ U, S, V, rho ] = completeMatrix( observedData, tau, maxNumSVs, tauStar )
     maxIter = 10000;
-    epsilon = 1.e-7;
+    epsilon = 1.e-12;
 
     [ rowN, colN ] = size( observedData );
     mask = sparse( observedData ~= 0 );

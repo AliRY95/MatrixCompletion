@@ -2,17 +2,24 @@ clearvars;
 clc;
 clf;
 
+%% Inputs
+testAvailable = 0;
+tau = 1500;
+ell = 50;
+
 %% Choose one for the observed data
 % rowN = 100;
 % colN = 100;
 % observedData = createRandomMatrix( rowN, colN, 0.1 );
+
 [ observedData, testData ] = readMovieLensData( "ml-100k", 1 );
-% observedData = readImage( "Images/MPF.jpg", 20, 0.5 );
-% 
 testAvailable = 1;
+
+% observedData = readImage( "Images/MPF.jpg", 20, 0.5 );
+
 %% Dual conditional gradient for matrix completion
 tic;
-[ U, S, V, rho ] = completeMatrix( observedData, 2000, 50, 10000 );
+[ U, S, V, rho ] = completeMatrix( observedData, tau, ell, 100 * tau );
 toc;
 
 %% Rank estimation as proposed by MPF
@@ -20,8 +27,6 @@ estimatedRank = estimateRank( U, S, V );
 
 %% Post-processing
 predictedData = U * S * V';
-% rounding to have more meaningful data
-% predictedData = scaleData( observedData, predictedData );
 
 % Evaluation on training set
 indices = find( observedData );
@@ -42,6 +47,8 @@ end
 %% Plots
 figure( 1 );
 semilogy( abs( rho ) );
+xlabel( "Iteration" );
+ylabel( "Optimality gap" );
 
 figure( 2 );
 subplot( 1, 2, 1 );
